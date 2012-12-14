@@ -18,7 +18,9 @@ package com.noshufou.android.su;
 import android.os.Bundle;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Window;
+import com.noshufou.android.su.util.Util;
 
 public class UpdaterActivity extends SherlockFragmentActivity {
     private static final String TAG = "Su.UpdaterActivity";
@@ -30,4 +32,20 @@ public class UpdaterActivity extends SherlockFragmentActivity {
         setContentView(R.layout.activity_updater);
     }
 
+    //Using this method the home button now works	--LiTTle
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case android.R.id.home:
+            goHome();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+    
+    //This method is with the onOptionsItemSelected(...)	--LiTTle
+    private void goHome() {
+        Util.goHome(this);
+    }
 }

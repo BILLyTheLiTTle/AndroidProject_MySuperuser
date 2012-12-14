@@ -43,6 +43,7 @@ public class UpdaterService extends Service {
 
     public static final int TASK_DOWNLOAD_MANIFEST = 0;
     public static final int TASK_UPDATE = 1;
+    public static final int TASK_NO_NEED_TO_UPDATE=2;		//LiTTle
     public static final int NOTIFICATION_ID = 42;
 
     private class Manifest {
@@ -140,7 +141,8 @@ public class UpdaterService extends Service {
         R.string.updater_step_download_manifest,
         R.string.updater_step_parse_manifest,
         R.string.updater_step_latest_version,
-        R.string.updater_step_check_installed_version
+        R.string.updater_step_check_installed_version,
+        R.string.updater_step_no_need_to_install
     };
     
     private static final int[] UPDATER_STEPS = new int[] {
@@ -262,13 +264,25 @@ public class UpdaterService extends Service {
             mSuVersionInfo = Util.getSuVersionInfo();
             currentStep.finish(mSuVersionInfo.versionCode >= mManifest.versionCode,
                     mSuVersionInfo.version);
-
+            
+            // Avoid installing if installed version is newer than the server version	--LiTTle--
+            if (mSuVersionInfo.versionCode > mManifest.versionCode){
+	            currentStep = currentStep.increment(DOWNLOAD_MANIFEST_STEPS);
+	            currentStep.finish(mSuVersionInfo.versionCode > mManifest.versionCode,"");
+            }
+            
             mHandler.post(new Runnable() {
 
                 @Override
                 public void run() {
-                    if (mListener != null)
-                        mListener.onFinishTask(TASK_DOWNLOAD_MANIFEST);
+                    if (mListener != null){
+                    	//Change the update button text	--LiTTle--
+                    	if(mSuVersionInfo.versionCode>mManifest.versionCode){
+                    		mListener.onFinishTask(TASK_NO_NEED_TO_UPDATE);
+                        }
+                    	else
+                    		mListener.onFinishTask(TASK_DOWNLOAD_MANIFEST);
+                    }
                 }
                 
             });

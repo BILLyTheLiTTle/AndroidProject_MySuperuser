@@ -71,7 +71,7 @@ public class AppDetailsFragment extends SherlockListFragment
     private TextView mCommandText = null;
     private TextView mStatusText = null;
 
-    private boolean mElitePresent = false;
+    private boolean mElitePresent = true;//false; LiTTle
     private boolean mUseAppSettings = true;
     private boolean mNotificationsEnabled = true;
     private boolean mLoggingEnabled = true;
@@ -87,7 +87,7 @@ public class AppDetailsFragment extends SherlockListFragment
     
     private ArrayList<Long> mShownIndexes = new ArrayList<Long>(); 
 
-    private boolean mReady = false;
+    private boolean mReady = true;//false; LiTTle
     private boolean mDualPane = false;
 
     private int mAllow = -1;
@@ -241,7 +241,7 @@ public class AppDetailsFragment extends SherlockListFragment
             menu.add(MENU_GROUP_OPTIONS, MenuId.LOGGING, MenuId.LOGGING, R.string.logging_enabled)
             .setCheckable(true).setChecked(mLoggingEnabled);
 
-            menu.setGroupEnabled(MENU_GROUP_OPTIONS, !mUseAppSettings);
+            menu.setGroupEnabled(MENU_GROUP_OPTIONS, mUseAppSettings);//!mUseAppSettings);
         }
     }
 
@@ -301,11 +301,11 @@ public class AppDetailsFragment extends SherlockListFragment
                 }
                 break;
             case MenuId.NOTIFICATIONS:
-                mNotificationsEnabled = !mNotificationsEnabled;
+                //mNotificationsEnabled = !mNotificationsEnabled; LiTTle
                 values.put(Apps.NOTIFICATIONS, mNotificationsEnabled);
                 break;
             case MenuId.LOGGING:
-                mLoggingEnabled = !mLoggingEnabled;
+                //mLoggingEnabled = !mLoggingEnabled; LiTTle
                 values.put(Apps.LOGGING, mLoggingEnabled);
                 break;
         }

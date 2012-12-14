@@ -35,6 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -253,8 +254,8 @@ public class Util {
         return uidName;
     }
     
-    public static void goHome(Context context) {
-        // Be clever here, otherwise the home button doesn't work as advertised.
+    public static void goHome(Activity context) {
+    	// Be clever here, otherwise the home button doesn't work as advertised.
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Intent intent;
         if (prefs.getBoolean(Preferences.GHOST_MODE, false)) {
@@ -505,6 +506,7 @@ public class Util {
     }
 
     public static boolean elitePresent(Context context, boolean versionCheck, int minVersion) {
+    	//Commented by LiTTle. Unlock some of the features of the elite version!!!
         /*PackageManager pm = context.getPackageManager();
         int sigs = pm.checkSignatures("com.noshufou.android.su", "com.noshufou.android.su.elite");
         if (sigs != PackageManager.SIGNATURE_MATCH) {

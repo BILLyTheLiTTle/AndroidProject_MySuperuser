@@ -118,6 +118,11 @@ public class UpdaterFragment extends SherlockListFragment
                 mButton.setText(R.string.updater_cool);
                 mButton.setEnabled(true);
                 break;
+            //Configure if su binary needs update UI	--LiTTle
+            case UpdaterService.TASK_NO_NEED_TO_UPDATE:
+            	mButton.setText(getResources().getString(R.string.updater_exit));
+                mButton.setEnabled(true);
+                break;
         }
     }
 
@@ -125,7 +130,11 @@ public class UpdaterFragment extends SherlockListFragment
     public void onClick(View v) {
         if (!mBound)
             return;
-
+        //Act depending the update button text	--LiTTle--
+        if(mButton.getText().equals(getResources().getString(R.string.updater_exit))){
+        	getActivity().finish();
+        	return;
+        }
         mService.update();
         mButton.setText(R.string.updater_working);
         mButton.setEnabled(false);

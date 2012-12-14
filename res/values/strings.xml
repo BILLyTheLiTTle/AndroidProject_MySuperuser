@@ -196,6 +196,7 @@
     <string name="updater_update_failed">Update failed. Try again?</string>
     <string name="updater_no_conn">Failed to download manifest. Check internet connection</string>
     <string name="updater_try_again">Try again</string>
+    <string name="updater_exit">Exit</string>	<!-- LiTTle -->
     <string name="updater_su_updated">su binary updated successfully</string>
     <string name="updater_step_download_manifest">Downloading manifest…\u0020</string>
     <string name="updater_step_parse_manifest">Parsing manifest…\u0020</string>
@@ -204,6 +205,8 @@
     <string name="updater_step_fix_db">Fixing database…\u0020</string>
     <string name="updater_step_unpack_sutools">Unpacking sutools…\u0020</string>
     <string name="updater_step_check_installed_path">Checking current install path…\u0020</string>
+    <string name="updater_step_no_need_to_install">No need to install su binary!\n\n
+        Press \"Exit\" button!</string>	<!-- LiTTle -->
     <string name="updater_step_download_su">Downloading new binary…\u0020</string>
     <string name="updater_step_get_root">Gaining root access…\u0020</string>
     <string name="updater_step_remount_rw">Remounting /system as rw…\u0020</string>
